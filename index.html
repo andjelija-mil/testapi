@@ -288,6 +288,35 @@
                     break;
                 case "put":
                     //kod za bonus poene
+                    if(tabela == "radio_novosti") {
+                        var valueId = {
+                            "novost_id": $("input[name = id_novosti]").val()
+                        };
+                        var values = {
+                            "naslov": $("input[name = naslov_novosti_put]").val(),
+                            "tekst": $("#tekst_novosti_put").val(),
+                            "kategorija_id": parseInt($("#kategorija_odabir_put").val())
+                        };
+
+                        console.log(values);
+
+                        var id_kategorije = $('#id_kategorije').val();
+                        $.put("http://localhost:8080/rest/rest/novosti/" + id_novosti, JSON.stringify(values),function(data){
+                            alert("Odgovor od servera> "+data['poruka']);
+                        });
+                    } else {
+                        var valueId = {
+                            "kategorija_id": $("input[name = id_kategorije]").val()
+                        };
+                        var values = {
+                            "kategorija": $("input[name = kategorija_naziv_put]").val()
+                        };
+                        console.log(values)
+                        var id_kategorije = $('#id_kategorije').val();
+                        $.put("http://localhost:8080/rest/rest/kategorije/" + id_kategorije, JSON.stringify(values),function(data){
+                            alert("Odgovor od servera> "+data['poruka']);
+                        });
+                    }
                     break;
                 case "delete":
                     //kod za bonus poene
