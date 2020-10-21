@@ -320,6 +320,29 @@
                     break;
                 case "delete":
                     //kod za bonus poene
+                    if(tabela == "radio_novosti") {
+                        var values = {
+                            "novost": $("input[name = brisanje]").val()
+                        }
+
+                        var id_novosti = $('#brisanje').val()
+
+                        console.log(values);
+                        $.delete("http://localhost:8080/rest/rest/novosti/" + id_novosti, JSON.stringify(values), function(data){
+                            alert("Uspesno izbrisana novost")
+                        });
+                    } else {
+                        var values = {
+                            "kategorija": $("input[name = brisanje").val()
+                        }
+
+                        var id_kategorije = $('#brisanje').val()
+
+                        console.log(values);
+                        $.delete("http://localhost:8080/rest/rest/kategorije/" + id_kategorije, JSON.stringify(values), function(data){
+                            alert("Uspesno izbrisana kategorija")
+                        });
+                    }
                     break;
                 default:
                     console.log("default");
